@@ -1,5 +1,8 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
+#include <stdbool.h>
+#include <cstdlib>
+#include <ctime> 
 
 void draw_rect(int32_t x, int32_t y, int32_t width, int32_t height, double r,
                double g, double b);
@@ -10,31 +13,60 @@ int32_t window_width = 1000;
 const int32_t cols = 30;
 const int32_t rows = 30;
 
+bool pathExists(){
+    static uint16_t timer = 0;
+
+    if(timer <= 300){
+        timer++;
+        return 0;
+    }
+    return 1;
+}
+
 int main()
 {
-    glfwInit();
-    GLFWwindow *window = glfwCreateWindow(window_width, window_height, "generate Labyrinth", NULL, NULL);
+    // glfwInit();
+    srand(time(NULL));
+    uint8_t gameboard[cols][rows];
 
-#include <stdbool.h>
-
-    bool gameboard[cols][rows];
-    
-
-
-    while (!glfwWindowShouldClose(window))
-    {
-        glfwGetWindowSize(window, &window_width, &window_height);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0, 100, 255, 1);
-        glfwPollEvents();
-
-        draw_rect(100, 100, 200, 200, 255, 0, 0);
-
-        glfwMakeContextCurrent(window);
-        glfwSwapBuffers(window);
+    for (uint8_t cols_g = 0; cols_g <= cols-1; cols_g++){ // _g = generate
+        for (uint8_t rows_g = 0; rows_g <= rows-1; rows_g++){
+            gameboard[cols_g][rows_g] = 1;
+        }
     }
 
-    glfwTerminate();
+    while (!pathExists())
+    {
+        uint8_t r_col = rand() % cols;
+        uint8_t r_row = rand() % rows;
+
+        gameboard[r_col][r_row] = 0;
+    }   
+    
+
+    // GLFWwindow *window = glfwCreateWindow(window_width, window_height, "generate Labyrinth", NULL, NULL);
+
+    // while (!glfwWindowShouldClose(window))
+    // {
+    //     glfwGetWindowSize(window, &window_width, &window_height);
+    //     glClear(GL_COLOR_BUFFER_BIT);
+    //     glClearColor(0, 100, 255, 1);
+    //     glfwPollEvents();
+
+    //     draw_rect(100, 100, 200, 200, 255, 0, 0);
+
+    //     glfwMakeContextCurrent(window);
+    //     glfwSwapBuffers(window);
+    // }
+
+    // glfwTerminate();
+
+    for (uint8_t cols_g = cols-1; cols_g > 0; cols_g--){ // _g = generate
+        for (uint8_t rows_g = rows-1; rows_g > 0; rows_g--){ // _g = generate
+            printf("%i ", gameboard[cols_g][rows_g]);
+        }
+        printf("\n");
+    }
     return 0;
 }
 

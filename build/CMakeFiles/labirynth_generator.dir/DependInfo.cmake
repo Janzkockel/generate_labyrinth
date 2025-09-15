@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/generate_labirynth/src/main.cpp" "CMakeFiles/labirynth_generator.dir/src/main.cpp.o" "gcc" "CMakeFiles/labirynth_generator.dir/src/main.cpp.o.d"
+  "/home/generate_labyrinth/src/main.cpp" "CMakeFiles/labirynth_generator.dir/src/main.cpp.o" "gcc" "CMakeFiles/labirynth_generator.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.
