@@ -1,4 +1,0 @@
-/home/generate_labirynth/build/CMakeFiles/labirynth_generator.dir
-/home/generate_labirynth/build/CMakeFiles/testing_algorithms.dir
-/home/generate_labirynth/build/CMakeFiles/edit_cache.dir
-/home/generate_labirynth/build/CMakeFiles/rebuild_cache.dir
