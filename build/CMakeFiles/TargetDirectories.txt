@@ -1,3 +1,0 @@
-/home/generate_labyrinth/build/CMakeFiles/labirynth_generator.dir
-/home/generate_labyrinth/build/CMakeFiles/edit_cache.dir
-/home/generate_labyrinth/build/CMakeFiles/rebuild_cache.dir
