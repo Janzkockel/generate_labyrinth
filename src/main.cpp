@@ -3,127 +3,94 @@
 #include <stdbool.h>
 #include <cstdlib>
 #include <ctime>
+#include "rightHandRule.h"
 
-void draw_rect(int32_t x, int32_t y, int32_t width, int32_t height, double r,
+void draw_rect(int x, int y, int width, int height, double r,
                double g, double b);
 
-int32_t window_height = 700;
-int32_t window_width = 1000;
+int window_height = 700;
+int window_width = 1000;
 
-const int32_t cols = 30;
-const int32_t rows = 30;
+const int cols = 80;
+const int rows = 80;
 
-bool pathExists(uint8_t start_col, uint8_t start_row)
-{
-    enum direction_enum
-    {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    };
-    enum direction_enum direction = RIGHT;
-
-    uint8_t current_pos[2];
-    current_pos[0] = start_col;
-    current_pos[1] = start_row;
-
-    if (current_pos == ){
-
-    }
-
-    switch (direction)
-    {
-    case RIGHT:
-
-        break;
-    
-    case LEFT:
-    
-        break;
-
-    case DOWN:
-        
-        break;
-
-    case UP:
-        
-        break;
-    
-    default:
-        printf("direction undef");
-        break;
-    }
-
-    return 0;
-}
+int start[2] = {0, 6};    // col, row
+int target[2] = {29, 25}; // col, row
 
 int main()
 {
-    // glfwInit();
     srand(time(NULL));
-    uint8_t gameboard[cols][rows];
+    int gameboard[cols][rows]; // 1 = wall, 0 = way, 8 = start, 9 = target
 
-    const uint8_t start[2] = {0, 6}; // col, row
-    const uint8_t target[2] = {29, 25};
-    for (uint8_t cols_g = 0; cols_g <= cols - 1; cols_g++)
+    for (int cols_g = 0; cols_g <= cols - 1; cols_g++)
     { // _g = generate
-        for (uint8_t rows_g = 0; rows_g <= rows - 1; rows_g++)
+        for (int rows_g = 0; rows_g <= rows - 1; rows_g++)
         {
             gameboard[cols_g][rows_g] = 1;
         }
     }
 
-    gameboard[start[0]][start[1]] = 8;
-    gameboard[target[0]][target[1]] = 9;
+    gameboard[start[0]][start[1]] = 8;   // 8 = start
+    gameboard[target[0]][target[1]] = 9; // 9 = target
 
-    while (!pathExists(start[0], start[1]))
+    while (pathExists(start, target, gameboard))
     {
-        uint8_t r_col = rand() % cols;
-        uint8_t r_row = rand() % rows;
+        int r_col = rand() % cols;
+        int r_row = rand() % rows;
 
-        if (r_col == start[0] && start[1] == 6)
+        if (r_col == start[0] && r_row == start[1])
         {
             gameboard[start[0]][start[1]] = 8;
         }
         else if (r_col == target[0] && r_row == target[1])
         {
-            gameboard[target[0]][target[1]] = 8;
+            gameboard[target[0]][target[1]] = 9;
         }
-        else{
+        else
+        {
             gameboard[r_col][r_row] = 0;
         }
     }
-
-    // GLFWwindow *window = glfwCreateWindow(window_width, window_height, "generate Labyrinth", NULL, NULL);
-
-    // while (!glfwWindowShouldClose(window))
-    // {
-    //     glfwGetWindowSize(window, &window_width, &window_height);
-    //     glClear(GL_COLOR_BUFFER_BIT);
-    //     glClearColor(0, 100, 255, 1);
-    //     glfwPollEvents();
-
-    //     draw_rect(100, 100, 200, 200, 255, 0, 0);
-
-    //     glfwMakeContextCurrent(window);
-    //     glfwSwapBuffers(window);
-    // }
-
-    // glfwTerminate();
-
-    for (uint8_t cols_g = cols - 1; cols_g > 0; cols_g--)
-    { // _g = generate
-        for (uint8_t rows_g = rows - 1; rows_g > 0; rows_g--)
-        { // _g = generate
-            printf("%i ", gameboard[cols_g][rows_g]);
+    for (int cols_p = cols - 1; cols_p > 0; cols_p--)
+    { // _p = print
+        for (int rows_p = rows - 1; rows_p > 0; rows_p--)
+        { // _p = print
+            if (gameboard[cols_p][rows_p] == 1)
+                printf("# ");
+            else if (gameboard[cols_p][rows_p] == 8)
+                printf("S ");
+            else if (gameboard[cols_p][rows_p] == 9)
+                printf("T ");
+            else
+                printf(". ");
         }
         printf("\n");
     }
+
+    printf("path exists\n");
+
+    glfwInit();
+    GLFWwindow *window = glfwCreateWindow(window_width, window_height, "generate Labyrinth", NULL, NULL);
+
+    while (!glfwWindowShouldClose(window))
+    {
+        glfwGetWindowSize(window, &window_width, &window_height);
+        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(0, 100, 255, 1);
+        glfwPollEvents();
+
+        draw_rect(100, 100, 200, 200, 255, 0, 0);
+
+        glfwMakeContextCurrent(window);
+        glfwSwapBuffers(window);
+    }
+
+    glfwTerminate();
+
     return 0;
 }
 
-void draw_rect(int32_t x, int32_t y, int32_t width, int32_t height, double r,
+void draw_rect(int x, int y, int width, int height, double r,
                double g, double b)
 {
     double readfinal = 1.0 / 255 * r;
