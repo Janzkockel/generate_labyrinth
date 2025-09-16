@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/generate_labyrinth
+CMAKE_SOURCE_DIR = /home/generate_labirynth
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/generate_labyrinth/build
+CMAKE_BINARY_DIR = /home/generate_labirynth/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/generate_labyrinth/build/CMakeFiles /home/generate_labyrinth/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/generate_labirynth/build/CMakeFiles /home/generate_labirynth/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/generate_labyrinth/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/generate_labirynth/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,6 +129,46 @@ labirynth_generator/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/labirynth_generator.dir/build.make CMakeFiles/labirynth_generator.dir/build
 .PHONY : labirynth_generator/fast
 
+#=============================================================================
+# Target rules for targets named testing_algorithms
+
+# Build rule for target.
+testing_algorithms: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 testing_algorithms
+.PHONY : testing_algorithms
+
+# fast build rule for target.
+testing_algorithms/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing_algorithms.dir/build.make CMakeFiles/testing_algorithms.dir/build
+.PHONY : testing_algorithms/fast
+
+libraries/rightHandRule.o: libraries/rightHandRule.cpp.o
+.PHONY : libraries/rightHandRule.o
+
+# target to build an object file
+libraries/rightHandRule.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/labirynth_generator.dir/build.make CMakeFiles/labirynth_generator.dir/libraries/rightHandRule.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing_algorithms.dir/build.make CMakeFiles/testing_algorithms.dir/libraries/rightHandRule.cpp.o
+.PHONY : libraries/rightHandRule.cpp.o
+
+libraries/rightHandRule.i: libraries/rightHandRule.cpp.i
+.PHONY : libraries/rightHandRule.i
+
+# target to preprocess a source file
+libraries/rightHandRule.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/labirynth_generator.dir/build.make CMakeFiles/labirynth_generator.dir/libraries/rightHandRule.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing_algorithms.dir/build.make CMakeFiles/testing_algorithms.dir/libraries/rightHandRule.cpp.i
+.PHONY : libraries/rightHandRule.cpp.i
+
+libraries/rightHandRule.s: libraries/rightHandRule.cpp.s
+.PHONY : libraries/rightHandRule.s
+
+# target to generate assembly for a file
+libraries/rightHandRule.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/labirynth_generator.dir/build.make CMakeFiles/labirynth_generator.dir/libraries/rightHandRule.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing_algorithms.dir/build.make CMakeFiles/testing_algorithms.dir/libraries/rightHandRule.cpp.s
+.PHONY : libraries/rightHandRule.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -153,6 +193,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/labirynth_generator.dir/build.make CMakeFiles/labirynth_generator.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/testing_algorithms.o: src/testing_algorithms.cpp.o
+.PHONY : src/testing_algorithms.o
+
+# target to build an object file
+src/testing_algorithms.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing_algorithms.dir/build.make CMakeFiles/testing_algorithms.dir/src/testing_algorithms.cpp.o
+.PHONY : src/testing_algorithms.cpp.o
+
+src/testing_algorithms.i: src/testing_algorithms.cpp.i
+.PHONY : src/testing_algorithms.i
+
+# target to preprocess a source file
+src/testing_algorithms.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing_algorithms.dir/build.make CMakeFiles/testing_algorithms.dir/src/testing_algorithms.cpp.i
+.PHONY : src/testing_algorithms.cpp.i
+
+src/testing_algorithms.s: src/testing_algorithms.cpp.s
+.PHONY : src/testing_algorithms.s
+
+# target to generate assembly for a file
+src/testing_algorithms.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing_algorithms.dir/build.make CMakeFiles/testing_algorithms.dir/src/testing_algorithms.cpp.s
+.PHONY : src/testing_algorithms.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,9 +226,16 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... labirynth_generator"
+	@echo "... testing_algorithms"
+	@echo "... libraries/rightHandRule.o"
+	@echo "... libraries/rightHandRule.i"
+	@echo "... libraries/rightHandRule.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/testing_algorithms.o"
+	@echo "... src/testing_algorithms.i"
+	@echo "... src/testing_algorithms.s"
 .PHONY : help
 
 

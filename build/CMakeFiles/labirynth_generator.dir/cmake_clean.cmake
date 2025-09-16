@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/labirynth_generator.dir/libraries/rightHandRule.cpp.o"
+  "CMakeFiles/labirynth_generator.dir/libraries/rightHandRule.cpp.o.d"
   "CMakeFiles/labirynth_generator.dir/src/main.cpp.o"
   "CMakeFiles/labirynth_generator.dir/src/main.cpp.o.d"
   "labirynth_generator"
