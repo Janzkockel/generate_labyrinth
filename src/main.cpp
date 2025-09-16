@@ -35,36 +35,40 @@ int main()
 
     while (pathExists(start, target, gameboard))
     {
+        // for (int cols_p = cols - 1; cols_p > 0; cols_p--)
+        // { // _p = print
+        //     for (int rows_p = rows - 1; rows_p > 0; rows_p--)
+        //     { // _p = print
+        //         if (gameboard[cols_p][rows_p] == 1)
+        //             printf("# ");
+        //         else if (gameboard[cols_p][rows_p] == 8)
+        //             printf("S ");
+        //         else if (gameboard[cols_p][rows_p] == 9)
+        //             printf("T ");
+        //         else
+        //             printf(". ");
+        //     }
+        //     printf("\n");
+        // }
+
         int r_col = rand() % cols;
         int r_row = rand() % rows;
 
         if (r_col == start[0] && r_row == start[1])
         {
             gameboard[start[0]][start[1]] = 8;
+            printf("[+] 8 happend");
         }
         else if (r_col == target[0] && r_row == target[1])
         {
             gameboard[target[0]][target[1]] = 9;
+            printf("[+] 9 happend");
+
         }
         else
         {
             gameboard[r_col][r_row] = 0;
         }
-    }
-    for (int cols_p = cols - 1; cols_p > 0; cols_p--)
-    { // _p = print
-        for (int rows_p = rows - 1; rows_p > 0; rows_p--)
-        { // _p = print
-            if (gameboard[cols_p][rows_p] == 1)
-                printf("# ");
-            else if (gameboard[cols_p][rows_p] == 8)
-                printf("S ");
-            else if (gameboard[cols_p][rows_p] == 9)
-                printf("T ");
-            else
-                printf(". ");
-        }
-        printf("\n");
     }
 
     printf("path exists\n");
